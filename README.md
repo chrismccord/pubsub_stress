@@ -2,7 +2,7 @@
 
 To run measurements, start the server with number of subscribers:
 
-    ☁🚀 ☁ › SUBSCRIBERS=20000 PORT=4000 MIX_ENV=prod mix phoenix.server
+    ☁🚀 ☁ › SUBSCRIBERS=700 PORT=4000 MIX_ENV=prod mix phoenix.server
 
 Then use `wrk` to push traffic:
 
