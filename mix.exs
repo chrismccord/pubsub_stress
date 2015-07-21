@@ -28,9 +28,8 @@ defmodule PubsubStress.Mixfile do
   #
   # Type `mix help deps` for examples and options
   defp deps do
-    [{:phoenix, github: "phoenixframework/phoenix", branch: "cm-pg2-perf", override: true},
+    [{:phoenix, path: "../phoenix", override: true},
      {:phoenix_html, "~> 1.1"},
-     {:phoenix_live_reload, "~> 0.4", only: :dev},
      {:cowboy, "~> 1.0"}]
   end
 end

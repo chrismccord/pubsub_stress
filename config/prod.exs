@@ -46,6 +46,14 @@ config :logger, level: :error
 #     config :pubsub_stress, PubsubStress.Endpoint, server: true
 #
 
-# Finally import the config/prod.secret.exs
-# which should be versioned separately.
-import_config "prod.secret.exs"
+# ## Secrets
+config :foo, Foo.Endpoint,
+  secret_key_base: "4SSEg1ULRfq7PeThyXuPT00blYbHId11jOjV+f8n6Zu3nssoObpyM1JSB5Cm5Iqt"
+
+# Configure your database
+config :foo, Foo.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  username: "postgres",
+  password: "postgres",
+  database: "foo_prod",
+  size: 20 # The amount of database connections in the pool

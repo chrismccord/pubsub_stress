@@ -14,6 +14,7 @@ defmodule PubsubStress do
       supervisor(PubsubStress.Endpoint, []),
       worker(PubsubStress.SimulatedSubscribers,
              [[subscriber_count, "rooms:123"]]),
+      worker(PubsubStress.QueueLenChecker, [PubsubStress.PubSub.Local])
     ]
 
     opts = [strategy: :one_for_one, name: PubsubStress.Supervisor]
