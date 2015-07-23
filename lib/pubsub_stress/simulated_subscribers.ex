@@ -19,7 +19,7 @@ defmodule PubsubStress.SimulatedSubscribers do
         listen.(listen)
       end
     end
-    Logger.info "#{inspect self}#{subscriber_count} subscribers listening on \"#{topic}\""
+    IO.puts "#{inspect self}#{subscriber_count} subscribers listening on \"#{topic}\""
     {:ok, subscriptions}
   end
 end

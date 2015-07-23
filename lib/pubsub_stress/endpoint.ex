@@ -1,6 +1,8 @@
 defmodule PubsubStress.Endpoint do
   use Phoenix.Endpoint, otp_app: :pubsub_stress
 
+  socket "/ws", PubsubStress.UserSocket
+
   # Serve at "/" the static files from "priv/static" directory.
   #
   # You should set gzip to true if you are running phoenix.digest
@@ -31,5 +33,5 @@ defmodule PubsubStress.Endpoint do
     key: "_pubsub_stress_key",
     signing_salt: "wkTeHXG2"
 
-  plug :router, PubsubStress.Router
+  plug PubsubStress.Router
 end

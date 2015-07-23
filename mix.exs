@@ -29,6 +29,7 @@ defmodule PubsubStress.Mixfile do
   # Type `mix help deps` for examples and options
   defp deps do
     [{:phoenix, path: "../phoenix", override: true},
+     {:websocket_client, github: "jeremyong/websocket_client"},
      {:phoenix_html, "~> 1.1"},
      {:cowboy, "~> 1.0"}]
   end
