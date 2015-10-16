@@ -4,7 +4,7 @@ defmodule PubsubStress.Mixfile do
   def project do
     [app: :pubsub_stress,
      version: "0.0.1",
-     elixir: "~> 1.0",
+     elixir: "~> 1.1",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix] ++ Mix.compilers,
      build_embedded: Mix.env == :prod,
@@ -28,7 +28,7 @@ defmodule PubsubStress.Mixfile do
   #
   # Type `mix help deps` for examples and options
   defp deps do
-    [{:phoenix, path: "../phoenix", override: true},
+    [{:phoenix, "~> 1.0.3"},
      {:websocket_client, github: "jeremyong/websocket_client"},
      {:phoenix_html, "~> 1.1"},
      {:cowboy, "~> 1.0"}]

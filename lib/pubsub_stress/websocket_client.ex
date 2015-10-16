@@ -13,6 +13,7 @@ defmodule PubsubStress.WebSocketClient do
   end
 
   def init([sender], _conn_state) do
+    send(self, :up)
     {:ok, %{sender: sender, ref: 0}}
   end
 
@@ -28,8 +29,12 @@ defmodule PubsubStress.WebSocketClient do
   forwards message to client sender process
   """
   def websocket_handle({:text, msg}, _conn_state, state) do
-    # send state.sender, Phoenix.Transports.JSONSerializer.decode!(msg, :text)
+    send state.sender, Phoenix.Transports.JSONSerializer.decode!(msg, :text)
     {:ok, state}
+  end
+
+  def websocket_info(:up, _conn_state, state) do
+    {:reply, {:text, json!(%{"topic" => "rooms:lobby", "event" => "new:msg", "payload" => %{"body" => "foo"}, "ref" => state.ref})}, put_in(state, [:ref], state.ref + 1)}
   end
 
   @doc """

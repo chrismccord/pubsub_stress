@@ -47,13 +47,3 @@ config :logger, level: :error
 #
 
 # ## Secrets
-config :foo, Foo.Endpoint,
-  secret_key_base: "4SSEg1ULRfq7PeThyXuPT00blYbHId11jOjV+f8n6Zu3nssoObpyM1JSB5Cm5Iqt"
-
-# Configure your database
-config :foo, Foo.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
-  database: "foo_prod",
-  size: 20 # The amount of database connections in the pool

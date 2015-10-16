@@ -1,5 +1,7 @@
 # PubsubStress
 
+## Broadcast testing
+
 To run measurements, start the server with number of subscribers:
 
     ☁🚀 ☁ › SUBSCRIBERS=700 PORT=4000 MIX_ENV=prod mix phoenix.server
@@ -7,6 +9,14 @@ To run measurements, start the server with number of subscribers:
 Then use `wrk` to push traffic:
 
     ☁🚀 ☁ › wrk -T 30s "http://localhost:4000/?format=json"
+
+
+## WS Client testing
+
+To run measurements, start the server with number of subscribers,
+then ensure your phoenix server is running on 4002 and start the test:
+
+    ☁🚀 ☁ › WS_CLIENTS=10000 PORT=4000 REMOTE_PORT=4002 MIX_ENV=prod mix phoenix.server
 
 
 ## v0.14.0

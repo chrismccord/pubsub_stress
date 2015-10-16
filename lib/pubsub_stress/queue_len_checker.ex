@@ -4,7 +4,7 @@ defmodule PubsubStress.QueueLenChecker do
   end
 
   def check(local) do
-    :timer.sleep(500)
+    :timer.sleep(10_000)
     {:message_queue_len, len} = Process.info(Process.whereis(local), :message_queue_len)
     IO.puts Integer.to_string(len)
     check(local)

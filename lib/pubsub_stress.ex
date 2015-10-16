@@ -5,6 +5,7 @@ defmodule PubsubStress do
   # for more information on OTP Applications
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
+    remote_port = System.get_env("REMOTE_PORT")
     subscriber_count = case System.get_env("SUBSCRIBERS") do
       nil -> 700
       count -> Integer.parse(count) |> elem(0)
@@ -22,7 +23,7 @@ defmodule PubsubStress do
       worker(PubsubStress.QueueLenChecker, [PubsubStress.PubSub.Local]),
     ]
     if ws_clients > 0 do
-      children = children ++ [worker(PubsubStress.WebSocketSimulator, [ws_clients])]
+      children = children ++ [worker(PubsubStress.WebSocketSimulator, [ws_clients, remote_port])]
     end
 
     opts = [strategy: :one_for_one, name: PubsubStress.Supervisor]
