@@ -16,7 +16,7 @@ Then use `wrk` to push traffic:
 To run measurements, start the server with number of subscribers,
 then ensure your phoenix server is running on 4002 and start the test:
 
-    ☁🚀 ☁ › WS_CLIENTS=10000 PORT=4000 REMOTE_PORT=4002 MIX_ENV=prod mix phoenix.server
+    ☁🚀 ☁ › WS_CLIENTS=10000 SUBSCRIBERS=0 PORT=4000 REMOTE_URL="ws://127.0.0.1:4002/socket/websocket" MIX_ENV=prod mix phoenix.server
 
 
 ## v0.14.0

@@ -5,7 +5,7 @@ defmodule PubsubStress do
   # for more information on OTP Applications
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
-    remote_port = System.get_env("REMOTE_PORT")
+    remote_port = System.get_env("REMOTE_URL")
     subscriber_count = case System.get_env("SUBSCRIBERS") do
       nil -> 700
       count -> Integer.parse(count) |> elem(0)
