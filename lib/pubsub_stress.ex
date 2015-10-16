@@ -23,7 +23,7 @@ defmodule PubsubStress do
       worker(PubsubStress.QueueLenChecker, [PubsubStress.PubSub.Local]),
     ]
     if ws_clients > 0 do
-      children = children ++ [worker(PubsubStress.WebSocketSimulator, [ws_clients, remote_port])]
+      children = children ++ [worker(PubsubStress.WebSocketSimulator, [[ws_clients, remote_port]])]
     end
 
     opts = [strategy: :one_for_one, name: PubsubStress.Supervisor]
