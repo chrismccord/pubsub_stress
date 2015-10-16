@@ -13,7 +13,7 @@ defmodule PubsubStress.WebSocketClient do
   end
 
   def init([sender], _conn_state) do
-    send(self, :up)
+    # send(self, :up)
     {:ok, %{sender: sender, ref: 0}}
   end
 
@@ -28,12 +28,16 @@ defmodule PubsubStress.WebSocketClient do
   Receives JSON encoded Socket.Message from remote WS endpoint and
   forwards message to client sender process
   """
-  def websocket_handle({:text, msg}, _conn_state, state) do
-    send state.sender, Phoenix.Transports.JSONSerializer.decode!(msg, :text)
+  def websocket_handle({:text, encoded_msg}, _conn_state, state) do
+    msg = Phoenix.Transports.WebSocketSerializer.decode!(encoded_msg, :text)
+    if msg.ref == "1" do
+      send(self, :after_join)
+    end
+    # send state.sender, msg
     {:ok, state}
   end
 
-  def websocket_info(:up, _conn_state, state) do
+  def websocket_info(:after_join, _conn_state, state) do
     {:reply, {:text, json!(%{"topic" => "rooms:lobby", "event" => "new:msg", "payload" => %{"body" => "foo"}, "ref" => state.ref})}, put_in(state, [:ref], state.ref + 1)}
   end
 
